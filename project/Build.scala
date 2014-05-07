@@ -23,6 +23,7 @@ object ApplicationBuild extends Build {
   
   val dependencies = Seq(
     "com.typesafe.play"       %% "play"                   % "2.2.3",
+    "com.typesafe.play"       %% "play-cache"             % "2.2.3",
     // test scope
     "com.typesafe.play"       %% "play-test"              % "2.2.3"  % "test",
     "org.scalatest"           %% "scalatest"              % "2.0"    % "test",
@@ -33,7 +34,7 @@ object ApplicationBuild extends Build {
   lazy val playr = Project(
     id = "playr",
     base = file("PlayR"),
-    settings = BuildSettings ++ Seq(
+    settings = Project.defaultSettings ++ BuildSettings ++ Seq(
       name := "playr", 
       version := appVersion,
       libraryDependencies := dependencies
@@ -44,9 +45,9 @@ object ApplicationBuild extends Build {
     name = "playr-tutorial",
     applicationVersion = appVersion,
     dependencies = dependencies,
-    settings = buildSettings,
+    settings = BuildSettings,
     path = file("PlayR/samples/playr-tutorial")
-  )
+  ).dependsOn(playr)
   
   
   lazy val main = play.Project(
