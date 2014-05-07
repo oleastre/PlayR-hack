@@ -1,0 +1,11 @@
+.classpath
+.project
+.settings
+project/target
+target/
+.target
+.cache
+logs
+bin
+.pyenv
+.pydev*
