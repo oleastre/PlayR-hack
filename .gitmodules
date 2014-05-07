@@ -1,0 +1,3 @@
+[submodule "public/swagger-ui"]
+	path = Playr-Swagger/public/swagger-ui
+	url = https://github.com/wordnik/swagger-ui.git
