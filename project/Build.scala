@@ -40,7 +40,7 @@ object ApplicationBuild extends Build {
       libraryDependencies := dependencies
     )
   )
-  
+
   lazy val playrTutorial = play.Project(
     name = "playr-tutorial",
     applicationVersion = appVersion,
@@ -48,7 +48,7 @@ object ApplicationBuild extends Build {
     settings = BuildSettings,
     path = file("PlayR/samples/playr-tutorial")
   ).dependsOn(playr)
-  
+
   lazy val playrSwagger = play.Project(
     name = "playr-swagger",
     applicationVersion = appVersion,
@@ -56,13 +56,21 @@ object ApplicationBuild extends Build {
     settings = BuildSettings,
     path = file("Playr-Swagger")
   ).dependsOn(playr)
-  
+
+  lazy val playrMongo = play.Project(
+    name = "playr-mongo",
+    applicationVersion = appVersion,
+    dependencies = dependencies,
+    settings = BuildSettings,
+    path = file("PlayR-mongo")
+  ).dependsOn(playr)
+
   lazy val main = play.Project(
     name = "hack-app",
     applicationVersion = appVersion,
     dependencies = dependencies,
     path = file("."),
     settings = BuildSettings
-  ).dependsOn(playr, playrTutorial, playrSwagger)
-   .aggregate(playr, playrTutorial, playrSwagger)
+  ).dependsOn(playr, playrTutorial, playrSwagger, playrMongo)
+   .aggregate(playr, playrTutorial, playrSwagger, playrMongo)
 }
