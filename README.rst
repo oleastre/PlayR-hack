@@ -40,7 +40,6 @@ Get familiar with play'r
 Having a look at the code before the start of the session will give us more time for interesting stuff.
 
 Sample application
-  
   The play'r source code contains a sample application (``PlayR/samples/playr-tutorial`` folder) that use almost all available features. 
 
   ReST API is accessible through http://localhost:9000/api/tutorial
@@ -48,7 +47,6 @@ Sample application
   Swagger generated documentation is accessible through http://localhost:9000/api-docs
 
 Play'r internals
-
   Two important parts to look at::
 
     PlayR/src/main/scala/twentysix/playr/core
