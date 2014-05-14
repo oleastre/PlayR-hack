@@ -47,7 +47,7 @@ object ApplicationBuild extends Build {
     dependencies = dependencies,
     settings = BuildSettings,
     path = file("PlayR/samples/playr-tutorial")
-  ).dependsOn(playr)
+  ).dependsOn(playr, playrMongo)
 
   lazy val playrSwagger = play.Project(
     name = "playr-swagger",
