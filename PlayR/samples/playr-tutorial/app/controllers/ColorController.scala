@@ -1,25 +1,23 @@
 package controllers
 
 import twentysix.playr._
-import twentysix.playr.simple._
+import twentysix.playr.mongo._
 import play.api.mvc._
 import play.api.libs.json.Json
-
 import models._
+import play.api.libs.json.JsObject
 
-object ColorController extends Resource[Color]
+object ColorController extends MongoResource[Color]
                           with ResourceRead
                           with ResourceCreate
                           with ResourceWrite {
-  val name = "color"
-
-  implicit val colorFormat = Json.format[Color]
+  val collectionName = "color"
 
   def fromId(sid: String) = toInt(sid).flatMap(id => ColorContainer.get(id))
 
   def list = Action { Ok(Json.toJson(ColorContainer.list)) }
 
-  def read(color: Color) = Action { Ok(Json.toJson(color)) }
+  def read(selector: JsObject, color: Color) = Action { Ok(Json.toJson(color)) }
 
   def write(color: Color) = Action(parse.json) { request =>
     val newColor = request.body.as[Color].copy(id=color.id)

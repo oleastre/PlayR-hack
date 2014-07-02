@@ -1,6 +1,11 @@
 package models
 
+import play.api.libs.json.Json
+
 case class Color(id: Int, name: String, rgb: String) extends CachedItem
+object Color {
+  implicit def format = Json.format[Color]
+}
 
 object ColorContainer extends CachedContainer[Color]{
   val cacheKey = "colors"
